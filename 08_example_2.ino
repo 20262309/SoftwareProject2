@@ -40,19 +40,13 @@ void loop() {
 
   if ((distance == 0.0) || (distance > _DIST_MAX)) {
     distance = _DIST_MAX + 10.0;
-    brightness = 255;              // LED OFF
+    brightness = 255;             
   }else if (distance < _DIST_MIN) {
     distance = _DIST_MIN - 10.0;
-    brightness = 255;              // LED OFF
+    brightness = 255;             
   }else if (distance <= 200.0) {
-    // 100mm -> 255 (OFF)
-    // 150mm -> about 128
-    // 200mm -> 0 (MAX brightness)
     brightness = (int)(255.0 * (200.0 - distance) / 100.0);
   }else {
-    // 200mm -> 0 (MAX brightness)
-    // 250mm -> about 128
-    // 300mm -> 255 (OFF)
     brightness = (int)(255.0 * (distance - 200.0) / 100.0);
   } analogWrite(PIN_LED, brightness);
 
